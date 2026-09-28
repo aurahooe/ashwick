@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ashwick</title>
+  <meta name="description" content="A public wall that turns with the hour. Private notes stay in your drawer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="smoke" aria-hidden="true"></div>
+  <div class="ember" aria-hidden="true"></div>
+
+  <header class="mast">
+    <a class="mark" href="#front">Ashwick</a>
+    <nav>
+      <button type="button" data-view="front" aria-current="true">The hour</button>
+      <button type="button" data-view="wall">Wall</button>
+      <button type="button" data-view="desk">Desk</button>
+    </nav>
+    <div id="authSlot" class="auth-slot"></div>
+  </header>
+
+  <main>
+    <section id="view-front" class="view on">
+      <p class="kicker" id="hourStamp">this hour</p>
+      <h1 class="display" id="editorial">The wick is catching.</h1>
+      <div class="timer" id="timer" aria-live="polite"></div>
+      <article class="feature" id="featureCard" hidden>
+        <p class="meta" id="featureMeta"></p>
+        <h2 id="featureTitle"></h2>
+        <p id="featureBody"></p>
+      </article>
+      <p class="lede">Write at the desk. Mark a note public and it can take the masthead when the hour turns.</p>
+    </section>
+
+    <section id="view-wall" class="view">
+      <p class="kicker">the wall</p>
+      <h2 class="display small">Only what people chose to show</h2>
+      <div id="wall" class="stack"></div>
+    </section>
+
+    <section id="view-desk" class="view">
+      <p class="kicker">your desk</p>
+      <h2 class="display small">Keep it, or pin it to the wall</h2>
+      <form id="noteForm" class="sheet" hidden>
+        <input name="title" maxlength="90" placeholder="A title, if you have one" />
+        <textarea name="body" required rows="8" placeholder="Leave something you would not mind finding later."></textarea>
+        <label class="check"><input type="checkbox" name="is_public" /> Mark public — it appears on the wall and can become the hour</label>
+        <button type="submit">Keep this</button>
+      </form>
+      <p id="deskGate" class="sheet">Sign in with a magic link. Nothing is stored until you write it.</p>
+      <div id="mine" class="stack"></div>
+    </section>
+  </main>
+
+  <aside id="gate" class="gate" hidden>
+    <form id="authForm" class="sheet">
+      <p class="kicker">door</p>
+      <h2>We’ll send a key to your mail.</h2>
+      <input type="email" name="email" required placeholder="you@somewhere" autocomplete="email" />
+      <button type="submit">Send the key</button>
+      <p class="fine" id="authMsg"></p>
+    </form>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
